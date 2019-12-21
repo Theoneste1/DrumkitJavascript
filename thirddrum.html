@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Third drum here</title>
+</head>
+<style>
+		
+	body{
+		background-image: url('images/Theoneste.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+		/*The all keys are here*/
+	.keys{
+		
+		min-height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.key{
+		background-color: green;
+		margin: .5rem;
+		text-align: center;
+		transition: 5s;
+	}
+	kbd{
+		color: white;
+		font-size: 2rem;
+	}
+	.sound{
+		color: yellow;
+		text-transform: capitalize;
+		font-size: 1.5rem;
+	}
+	.playing{
+		background-color: black;
+		opacity: 0.6;
+		transition: all .05s ease;
+		transform: scale(1.1);
+	}
+
+
+</style>
+
+<body>
+
+<div class="keys">
+    <div class="key" data-key="65">
+      <kbd>A</kbd><br>
+      <span class="sound">clap</span>
+    </div>
+    <div class="key" data-key="83">
+      <kbd>S</kbd><br>
+      <span class="sound">hihat</span>
+    </div>
+    <div class="key" data-key="68" >
+      <kbd>D</kbd><br>
+      <span class="sound">kick</span>
+    </div>
+    <div class="key" data-key="70">
+      <kbd>F</kbd><br>
+      <span class="sound">openhat</span>
+    </div>
+    <div class="key" data-key="71">
+      <kbd>G</kbd><br>
+      <span class="sound">boom</span>
+    </div>
+    <div class="key" data-key="72" >
+      <kbd>H</kbd><br>
+      <span class="sound">ride</span>
+    </div>
+    <div class="key" data-key="74">
+      <kbd>J</kbd><br>
+      <span class="sound">snare</span>
+    </div>
+    <div class="key" data-key="75" >
+      <kbd>K</kbd><br>
+      <span class="sound">tom</span>
+    </div>
+    <div class="key"  data-key="76" >
+      <kbd>L</kbd><br>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+
+  <audio src="sounds/clap.wav"  data-key="65" ></audio>
+  <audio src="sounds/hihat.wav" data-key="83"></audio>
+  <audio src="sounds/kick.wav" data-key="68" ></audio>
+  <audio src="sounds/openhat.wav" data-key="70" ></audio>
+  <audio src="sounds/boom.wav" data-key="71" ></audio>
+  <audio src="sounds/ride.wav" data-key="72" ></audio>
+  <audio src="sounds/snare.wav" data-key="74" ></audio>
+  <audio src="sounds/tom.wav" data-key="75" ></audio>
+  <audio src="sounds/tink.wav" data-key="76"></audio>
+
+
+  <script>
+
+  	function playSound(e)
+  	{
+  		//
+  		//we need to press on key from html doc to play sound
+  		//
+  		const pressedKey=document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+  		//
+  		//we need an audio assocaited to that key
+  		//
+  		const audioProvided=document.querySelector(`audio[data-key="${e.keyCode}"]`);
+
+  		//
+  		//we need whether we press a key which has the audio
+  		//
+
+  		if(!audioProvided)
+
+  			return; // return nothing
+  		
+		audioProvided.play() // then play that audio
+		pressedKey.classList.add('playing'); // class for polishing up.
+		audioProvided.currentTime=0;
+  	}
+
+  		//
+  		//we need to remove the transition here!
+  		//
+
+  		function transitionRemove(e){
+  			 //
+  		//we need if an even has propertyName which is transform, it means that it has been played.
+  		// then I have to remove it, okay
+  		if(e.propertyName!='transform')
+  		{
+  			return; // return nothing
+  			}
+		//here we need to remove class of playing
+		this.classList.remove('playing');
+  		}
+
+  		// for removing the transition we need to go through all keys
+
+  		allkeys=document.querySelectorAll('.key');
+  		allkeys.forEach(onekey=>onekey.addEventListener('transitionend',transitionRemove));
+
+  	// I  have to call playing function here!
+  	 // The action would happen on window
+  	 window.addEventListener('keydown', playSound);
+
+  	
+
+  </script>
+  	
+
+</body>
+</html>

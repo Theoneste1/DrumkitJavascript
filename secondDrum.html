@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>secondDrum</title>
+
+<style>
+	
+	body{
+		background-image: url('images/Theoneste.jpg');
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+
+	.top{
+		min-height: 50vh;
+		margin-top: 0px;
+		align-items: center;
+		background-color: black;
+		opacity: 0.8;
+		justify-content: center;
+		margin-bottom: 3rem;
+
+	}
+		.heading{
+			text-transform: capitalize;
+			text-align: center;
+
+			color: white;
+			height: 20vh;
+			padding-top: 150px;
+			font-size: 2rem;
+			
+		}
+
+		.keys{
+		
+			display: flex;
+			min-height: 100vh;
+			justify-content: center;
+			align-items: center;
+			
+		
+		}
+
+		.key{
+
+			background-color: black;
+			opacity: 0.6;
+			margin: .5rem;
+			width: 5rem;
+			text-align: center;
+			transition: all .5s;
+
+		}
+		kbd{
+			color: white;
+			font-size: 1.9rem;
+		}
+		.sound{
+			color: yellow;
+			text-transform: capitalize;
+		}
+
+		.playing{
+			transform: scale(1.1);
+			box-shadow: 0 0 2rem white;
+			border-color: white;
+			background-color: red;
+			transition: 1s;
+			
+			/*border-color: yellow;
+			border-width: .5rem;
+			transition: 1s;
+			transform: scale(1.1);
+			background-color: red
+			opacity:0.5;*/
+		}
+
+</style>
+
+</head>
+<body>
+
+<div class="top">
+		<div class="heading">
+			
+			It is always seem impossible until it is done!
+
+		</div>
+	 </div>
+
+	<div class="keys">
+    <div class="key" data-key="65">
+      <kbd>A</kbd><br>
+      <span class="sound">clap</span>
+    </div>
+    <div class="key" data-key="83">
+      <kbd>S</kbd><br>
+      <span class="sound">hihat</span>
+    </div>
+    <div class="key" data-key="68" >
+      <kbd>D</kbd><br>
+      <span class="sound">kick</span>
+    </div>
+    <div class="key" data-key="70">
+      <kbd>F</kbd><br>
+      <span class="sound">openhat</span>
+    </div>
+    <div class="key" data-key="71">
+      <kbd>G</kbd><br>
+      <span class="sound">boom</span>
+    </div>
+    <div class="key" data-key="72" >
+      <kbd>H</kbd><br>
+      <span class="sound">ride</span>
+    </div>
+    <div class="key" data-key="74">
+      <kbd>J</kbd><br>
+      <span class="sound">snare</span>
+    </div>
+    <div class="key" data-key="75" >
+      <kbd>K</kbd><br>
+      <span class="sound">tom</span>
+    </div>
+    <div class="key"  data-key="76" >
+      <kbd>L</kbd><br>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+
+  <audio src="sounds/clap.wav"  data-key="65" ></audio>
+  <audio src="sounds/hihat.wav" data-key="83"></audio>
+  <audio src="sounds/kick.wav" data-key="68" ></audio>
+  <audio src="sounds/openhat.wav" data-key="70" ></audio>
+  <audio src="sounds/boom.wav" data-key="71" ></audio>
+  <audio src="sounds/ride.wav" data-key="72" ></audio>
+  <audio src="sounds/snare.wav" data-key="74" ></audio>
+  <audio src="sounds/tom.wav" data-key="75" ></audio>
+  <audio src="sounds/tink.wav" data-key="76"></audio>
+
+  <script>
+  	
+  	window.addEventListener('keydown',playSound);
+  		// 
+  		// play sound function
+  		// 
+  	function playSound(event)
+  	{
+  		const soundplayedAssociated= document.querySelector(`audio[data-key="${event.keyCode}"]`);
+  		// const soundplayedAssociated = document.querySelector('audio[data-key="${event.keyCode}"]'); // Oh my God this cannot play due to what the quotes are. Programming is not easy!! //
+  		const keypressed= document.querySelector(`.key[data-key="${event.keyCode}"]`);
+  		 if(!soundplayedAssociated)
+  		 {
+  		 	return;
+  		 }
+  		 soundplayedAssociated.play();
+  		 keypressed.classList.add('playing');
+  		 soundplayedAssociated.currentTime=0;
+  	}
+  	// 
+  	// change transition
+  	// 
+  	function removeTransition(event)
+  	{
+  		if(event.propertyName!='transform')
+  			return;
+  		this.classList.remove('playing');
+  	}
+
+  	// 
+  	// Passing through all the keys!
+  	// 
+  		const allkeys=document.querySelectorAll('.key'); // collecting all keys from division of key
+
+  		allkeys.forEach(key=>key.addEventListener('transitionend',removeTransition));
+
+       
+  </script>
+</body>
+</html>

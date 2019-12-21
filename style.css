@@ -1,0 +1,84 @@
+
+body{
+	margin: 0;
+	padding: 0;
+}
+
+html{
+	 margin: 0;
+	 padding: 0;
+	 background-image:url(images/Theoneste.jpg);
+	 background-size: cover;
+}
+.heading{
+   color: white;
+   min-height: 12vh;
+   font-size: 2rem;
+   text-transform: capitalize;
+   background-color: black; 
+    text-align: center; 
+}
+
+.heading h4{
+    align-items: center;
+    padding-top: 10px;
+}
+
+.top{
+	background-color: green;
+}
+
+.keys{
+
+  display: flex;
+  /*flex: 1;*/
+  min-height: 100vh;
+  /* this just put in the center from up to down*/
+  align-items: center; 
+
+  /*This put it from center from  left to right*/
+  justify-content: center;
+}
+
+
+
+.key{
+ border: solid black .4rem ; 
+ padding: 1rem .5rem;
+ margin: .2rem;
+ transition: all .07s ease;
+ background-color: grey;
+
+}
+/* what would happen if we play*/
+.playing{
+	/*border-color: yellow;*/
+	box-shadow:0 0 10px #ffc600;
+	transform: scale(1.1);
+  	border-color: yellow;
+	
+ /* transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 1rem #ffc600;*/
+}
+
+kbd{
+	display: block;
+	color: white;
+	/*align-items: center;*/
+	font-size: 1.5rem;
+	/*margin:1rem;*/
+	padding: 1rem;
+	/*justify-content: center;
+}*/
+}
+
+.sound{
+	font-size: 1.2rem;
+	color: #ffc600;
+	letter-spacing: .1rem;
+	background-color: grey;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+}
